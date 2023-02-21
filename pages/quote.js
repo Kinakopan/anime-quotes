@@ -6,41 +6,43 @@ import record from '../data/animequotes.json'
 import { useState, useEffect } from 'react'
 
 export default function Quote() {
-  console.log('inside Home: ', record);
-
-  const [capResult, setCapResult] = useState('');
+  const [capResult, setCapResult] = useState('Default');
   const [inputValue, setInputValue] = useState('Default');
   const [searchResult, setSearchResult] = useState('Default');
+  const [filterState, setFilterState] = useState('');
+  const [bgColor, setBgColor] = useState('');
 
   const showAll = async () => {
     setCapResult('ALL')
-    console.log('Button Clicked')
-    console.log('setCapResult is: ', capResult)
   }
 
   const handleBlur = (e) => {
     setInputValue(e.target.value);
-    console.log('e.target.value is: ', e.target.value)
-    console.log('inputValue is: ', inputValue)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('===submit===');
     const ResultString = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
-    setCapResult(ResultString)
-    console.log('setCapResult is: ', capResult);
-    setSearchResult(inputValue.toLowerCase())
+    setCapResult(ResultString);
+    setSearchResult(inputValue.toLowerCase());
+    return { capResult, searchResult };
   }
 
-  // useEffect(() => {
-  //   const result = record.find((rec) => rec.Anime.toLowerCase().includes(searchResult));
-  //   if (result) {
-  //     setData(result);
-  //     console.log('record.anime: ', result.Anime);
-  //   }
-  // }, [searchResult]);
+  useEffect(() => {
+    handleColor(capResult, searchResult, setFilterState, setBgColor);
+  }, [capResult, searchResult]);
 
+  function handleColor(capResult, searchResult, setFilterState) {
+    if(capResult !== 'Default') {
+      setFilterState('invert(1)');
+      setBgColor('rgb(11 30 59)')
+      console.log('capResult is : ', capResult);
+    } else if (searchResult !== 'Default') {
+      setFilterState('hue-rotate(319deg)');
+      setBgColor('rgb(255 218 213)')
+      console.log('searchResult is : ', searchResult);
+    }
+  };
 
   return (
     <>
@@ -52,8 +54,12 @@ export default function Quote() {
 
         <link rel="icon" href="/favicon.ico" alt="favicon image by Icons8 (https://icons8.com)"/>
       </Head>
-      <main className={`${styles.main} ${styles.main_quote}`}>
-        <span className={`${styles.bgImg} ${styles.bgImg_quote}`}></span>
+      <main
+        className={`${styles.main} ${styles.main_quote}`}
+        style={{backgroundColor: `${bgColor}`}}>
+        <span
+          className={`${styles.bgImg} ${styles.bgImg_quote}`}
+          style={{filter:`${filterState}`}}></span>
 
         <Link className={styles.logo} href="/">
           <Image src="/logo.png" width={60} height={60} alt="logo image by Icons8 (https://icons8.com)"/>
