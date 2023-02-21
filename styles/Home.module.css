@@ -173,6 +173,11 @@
   border-radius: 10px;
   background: #dd741b;
 }
+@media (max-width: 414px) {
+  .btnContainer {
+    flex-direction: column;
+  }
+}
 
 .form {
   display: flex;
@@ -193,6 +198,12 @@
   font-size: 1rem;
   outline: none;
 }
+@media (max-width: 414px) {
+  .AnimenameInput {
+    width: 9rem;
+  }
+}
+
 
 .animeNameList_container {
   display: flex;
@@ -234,6 +245,13 @@
   padding: 1rem 2.5rem 1rem .5rem;
   outline: 10px solid #ffffff7a;
   border-radius: 1px;
+}
+@media (max-width: 768px) {
+  .return_body {
+    width: 100%;
+    padding: 0;
+    margin: 2rem 0;
+  }
 }
 
 .return_wrapper {
