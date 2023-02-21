@@ -1,4 +1,4 @@
-### NASA EPIC App
+### Anime Quote App
 
 ## Description
 This is a Next.js app built using the Data set at https://www.kaggle.com/datasets/tarundalal/anime-quotes The app can be adjusted to fit various screen sizes, including mobile, tablet, and PC screens.
