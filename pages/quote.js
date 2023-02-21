@@ -53,7 +53,7 @@ export default function Quote() {
         <link rel="icon" href="/favicon.ico" alt="favicon image by Icons8 (https://icons8.com)"/>
       </Head>
       <main className={`${styles.main} ${styles.main_quote}`}>
-        <div className={`${styles.bgImg} ${styles.bgImg_quote}`}></div>
+        <span className={`${styles.bgImg} ${styles.bgImg_quote}`}></span>
 
         <Link className={styles.logo} href="/">
           <Image src="/logo.png" width={60} height={60} alt="logo image by Icons8 (https://icons8.com)"/>

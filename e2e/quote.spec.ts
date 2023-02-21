@@ -70,7 +70,7 @@ test.describe('Main area', () => {
             return window.getComputedStyle(ele).getPropertyValue("background-position")
         })
         console.log(backgroundSize);
-        expect(backgroundSize).toBe("right bottom");
+        expect(backgroundSize).toBe("100% 100%");
     })
 
     test('background image position for tablet', async({ page }) => {
@@ -82,7 +82,7 @@ test.describe('Main area', () => {
             return window.getComputedStyle(ele).getPropertyValue("background-position")
         })
         console.log(backgroundSize);
-        expect(backgroundSize).toBe("center bottom%");
+        expect(backgroundSize).toBe("50% 100%");
     })
 
     test('background image position for mobile', async({ page }) => {
@@ -94,6 +94,6 @@ test.describe('Main area', () => {
             return window.getComputedStyle(ele).getPropertyValue("background-position")
         })
         console.log(backgroundSize);
-        expect(backgroundSize).toBe("center bottom");
+        expect(backgroundSize).toBe("50% 100%");
     })
 })
