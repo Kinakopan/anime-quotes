@@ -11,9 +11,11 @@ export default function Quote() {
   const [searchResult, setSearchResult] = useState('Default');
   const [filterState, setFilterState] = useState('');
   const [bgColor, setBgColor] = useState('');
+  const [resultHeading, setResultHeading] = useState('');
 
   const showAll = async () => {
     setCapResult('ALL')
+    setSearchResult('Default')
   }
 
   const handleBlur = (e) => {
@@ -22,6 +24,7 @@ export default function Quote() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setCapResult('Default')
     const ResultString = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
     setCapResult(ResultString);
     setSearchResult(inputValue.toLowerCase());
@@ -29,17 +32,18 @@ export default function Quote() {
   }
 
   useEffect(() => {
-    handleColor(capResult, searchResult, setFilterState, setBgColor);
+    handleColor(capResult, searchResult, setFilterState, setBgColor, setResultHeading);
   }, [capResult, searchResult]);
 
-  function handleColor(capResult, searchResult, setFilterState) {
-    if(capResult !== 'Default') {
+  function handleColor(capResult, searchResult, setFilterState, setBgColor, setResultHeading) {
+    if(capResult !== 'Default' && searchResult == 'Default') {
       setFilterState('invert(1)');
-      setBgColor('rgb(11 30 59)')
+      setBgColor('rgb(11 30 59)');
+      setResultHeading('white');
       console.log('capResult is : ', capResult);
     } else if (searchResult !== 'Default') {
       setFilterState('hue-rotate(319deg)');
-      setBgColor('rgb(255 218 213)')
+      setBgColor('rgb(255 218 213)');
       console.log('searchResult is : ', searchResult);
     }
   };
@@ -112,7 +116,7 @@ export default function Quote() {
           </div>
 
           {
-            capResult == 'ALL' ? <h1 className={styles.title}>ALL Quotes</h1> : searchResult ? <h1 className={styles.title}>{capResult}</h1> : <></>
+            capResult == 'ALL' ? <h1 style={{color: `${resultHeading}`}} className={styles.title}>ALL Quotes</h1> : searchResult ? <h1 className={styles.title}>{capResult}</h1> : <></>
           }
 
           <div className={styles.return_body}>
