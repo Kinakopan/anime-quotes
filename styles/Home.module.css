@@ -80,10 +80,6 @@
 }
 
 /*========== HOME PAGE ==========*/
-.main_home {
-
-}
-
 .bgImg_home {
   background-image: url('/bg/tv.jpg');
   background-color: black;
@@ -201,9 +197,9 @@
 @media (max-width: 414px) {
   .AnimenameInput {
     width: 9rem;
+    font-size: 11px;
   }
 }
-
 
 .animeNameList_container {
   display: flex;
@@ -216,10 +212,6 @@
   background: #ffffff7a;
   outline: 10px solid #ffffff7a;
   border-radius: 1px;
-}
-
-.animeNameList_wrapper {
-
 }
 
 .list {
@@ -252,10 +244,6 @@
     padding: 0;
     margin: 2rem 0;
   }
-}
-
-.return_wrapper {
-
 }
 
 .animeName {
