@@ -12,6 +12,7 @@ export default function Quote() {
   const [filterState, setFilterState] = useState('');
   const [bgColor, setBgColor] = useState('');
   const [resultHeading, setResultHeading] = useState('');
+  const [resultQuotes, setResultQuotes] = useState([]);
 
   const showAll = async () => {
     setCapResult('ALL')
@@ -28,8 +29,22 @@ export default function Quote() {
     const ResultString = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
     setCapResult(ResultString);
     setSearchResult(inputValue.toLowerCase());
+    let result = record.filter((e)=>{
+      if(e.Anime.toLowerCase() === searchResult){
+        return true
+      }
+    })
+
+    if(result.length > 0){
+      setResultQuotes(searchResult);
+      console.log('result is: ', result)
+      console.log('resultQuotes is: ', resultQuotes)
+      console.log('searchResult is: ', searchResult)
+    }
     return { capResult, searchResult };
   }
+  console.log('returned searchResult is: ', searchResult)
+  console.log('returned resultQuotes is: ', resultQuotes)
 
   useEffect(() => {
     handleColor(capResult, searchResult, setFilterState, setBgColor, setResultHeading);
@@ -40,11 +55,9 @@ export default function Quote() {
       setFilterState('invert(1)');
       setBgColor('rgb(11 30 59)');
       setResultHeading('white');
-      console.log('capResult is : ', capResult);
     } else if (searchResult !== 'Default') {
       setFilterState('hue-rotate(319deg)');
       setBgColor('rgb(255 218 213)');
-      console.log('searchResult is : ', searchResult);
     }
   };
 
@@ -116,7 +129,7 @@ export default function Quote() {
           </div>
 
           {
-            capResult == 'ALL' ? <h1 style={{color: `${resultHeading}`}} className={styles.title}>ALL Quotes</h1> : searchResult ? <h1 className={styles.title}>{capResult}</h1> : <></>
+            capResult == 'ALL' ? <h1 style={{color: `${resultHeading}`}} className={styles.title}>ALL Quotes</h1> : resultQuotes === searchResult ? <h1 className={styles.title}>{capResult}</h1> : <></>
           }
 
           <div className={styles.return_body}>
